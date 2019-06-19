@@ -93,19 +93,19 @@ class Basic_2_Agent(Agent):
             a boolean; True if you want to pick the value or False otherwise.
         '''
 
-		self.count += 1
-		k_bound = 1+(self.k+self.k-3)/10*(0.1+abs(1-self.k/100))
-		# The last value, you have no choice afterward
-		if self.count >= self.N:
-			return True
+        self.count += 1
+        k_bound = 1+(self.k+self.k-3)/10*(0.1+abs(1-self.k/100))
+        # The last value, you have no choice afterward
+        if self.count >= self.N:
+    	    return True
 
-		if self.count * e * k_bound < self.N:
+        if self.count * e * k_bound < self.N:
 			# Record the value
-			self.standard = max(self.standard, value)
+            self.standard = max(self.standard, value)
 			# Return False for the first N/(e*k_bound) values.
-			return False
+            return False
 
-		return (value > self.standard)
+        return (value > self.standard)
 
 # TODO: basic-3
 class Basic_3_Agent(Agent):
