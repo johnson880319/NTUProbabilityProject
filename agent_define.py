@@ -93,8 +93,19 @@ class Basic_2_Agent(Agent):
             a boolean; True if you want to pick the value or False otherwise.
         '''
 
-        # The same decide function as sample code in the basic-1 problem.
-        return super(Basic_2_Agent, self).decide(value)
+		self.count += 1
+		k_bound = 1+(self.k+self.k-3)/10*(0.1+abs(1-self.k/100))
+		# The last value, you have no choice afterward
+		if self.count >= self.N:
+			return True
+
+		if self.count * e * k_bound < self.N:
+			# Record the value
+			self.standard = max(self.standard, value)
+			# Return False for the first N/(e*k_bound) values.
+			return False
+
+		return (value > self.standard)
 
 # TODO: basic-3
 class Basic_3_Agent(Agent):
